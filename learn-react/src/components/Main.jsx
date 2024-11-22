@@ -1,6 +1,6 @@
 import Counter from "./Counter";
 
-function Main() {
+export default function Main() {
   return (
     <main>
       <Counter />
@@ -8,4 +8,4 @@ function Main() {
   );
 }
 
-export default Main;
+// export default Main;
