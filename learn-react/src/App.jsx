@@ -1,10 +1,12 @@
 import "./App.css";
-import Main from "./components/Main";
+import CourseListCard from "./components/course/CourseListCard";
 
 function App() {
   return (
     <>
-      <Main />
+      <main>
+        <CourseListCard />
+      </main>
     </>
   );
 }
