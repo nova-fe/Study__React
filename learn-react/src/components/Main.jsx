@@ -1,11 +1,9 @@
-import Counter from "./Counter";
+import Card from "./Card";
 
 export default function Main() {
   return (
     <main>
-      <Counter />
+      <Card />
     </main>
   );
 }
-
-// export default Main;
