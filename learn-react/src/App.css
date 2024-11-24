@@ -80,3 +80,7 @@ main {
 .btn > .fa-link {
   color: #393939;
 }
+
+.btn__image {
+  width: 20px;
+}

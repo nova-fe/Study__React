@@ -14,7 +14,7 @@ export default function CourseListCard({ items }) {
       <div className="courses">
         <CourseItem {...course1} />
         <CourseItem {...course2} />
-        <CourseItem title={course3.title} description={course3.description} thumbnail={course3.thumbnail} />
+        <CourseItem {...course3} />
       </div>
     </Card>
 
