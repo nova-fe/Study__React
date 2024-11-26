@@ -15,6 +15,13 @@ export default function Counter({ onTotal }) {
     setCounter(counter + 1); // setCounter(0 + 1)
     console.log("[함수호출] Counter: ", counter); // 함수호출: 0
 
+    // setCounter를 여러번 변경하기 위해서는 콜백함수를 전달해주면 된다.
+    // setCounter((기본값) => 기본값에 + 1); // 1
+    // setCounter((업데이트값) => 업데이트값 + 1);
+    // setCounter((prevCounter) => prevCounter + 1); // 0 + 1
+    // setCounter((prevCounter) => prevCounter + 1); // 1 + 2
+    // setCounter((prevCounter) => prevCounter + 1); // 2 + 3
+
     if (onTotal) {
       // onTotal 이 있을 경우만 onTotal() 실행
       onTotal();
