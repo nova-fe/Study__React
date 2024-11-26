@@ -1,7 +1,17 @@
+import { useState } from "react";
+
 // * 일반적으로 사용 (함수 선언식)
-export default function Counter() {
+export default function Counter( {onTotal} ) {
+  // const [현 상태, 상태 변경] = useState(기본값)
+  const [counter, setCounter] = useState(0);
+
+  const handleCounter = () => {
+    setCounter(counter + 1);
+    onTotal();
+  };
+
   // 상태, 로직
-  return <button>Counter</button>;
+  return <button onClick={handleCounter}>Counter: {counter}</button>;
 }
 
 // export default Counter;

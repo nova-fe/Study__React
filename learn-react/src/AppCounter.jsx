@@ -1,9 +1,9 @@
-import "./App.css";
+import "./AppCounter.css";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
 
-function App() {
+function AppCounter() {
   return (
     <>
       <Header />
@@ -13,4 +13,4 @@ function App() {
   );
 }
 
-export default App;
+export default AppCounter;
