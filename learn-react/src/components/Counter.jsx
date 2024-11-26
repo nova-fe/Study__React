@@ -7,7 +7,10 @@ export default function Counter( {onTotal} ) {
 
   const handleCounter = () => {
     setCounter(counter + 1);
-    onTotal();
+    if (onTotal) {
+      // onTotal 이 있을 경우만 onTotal() 실행
+      onTotal();
+    }
   };
 
   // 상태, 로직

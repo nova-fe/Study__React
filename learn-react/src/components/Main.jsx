@@ -12,9 +12,11 @@ export default function Main() {
     <main>
       <h2>Total: {total}</h2>
       <Counter onTotal={handleTotal} />
-      <br/>
-      <br/>
+      <hr />
       <Counter onTotal={handleTotal} />
+      <hr />
+      {/* onTotal이 사용되지 않은 Counter 클릭시엔 다른 컴포넌트가 리렌더링 되지 않음 */}
+      <Counter />
     </main>
   );
 }
