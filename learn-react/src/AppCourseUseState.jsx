@@ -34,20 +34,13 @@ function App() {
   const handleToggleFavorite = (id, isFavorite) => {
     const nextItems = items.map((item) => {
       if (item.id === id) {
-        let newFavorite = isFavorite ? false : true;
-        return { ...item, isFavorite: newFavorite };
+        return { ...item, isFavorite };
       }
       return item;
     });
 
     setItems(nextItems);
     alert(isFavorite ? "좋아요" : "모르겠어요");
-  };
-
-  // 링크 버튼
-  const handleItemClick = (link) => {
-    alert("Item Click!");
-    window.open(link, "_blank");
   };
 
   // 관심 강의만 표시하기

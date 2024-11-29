@@ -34,15 +34,9 @@ function App() {
   const handleToggleFavorite = (id, isFavorite) => {
     updateItems((draft) => {
       const targetItem = draft.find((item) => item.id === id);
-      targetItem.isFavorite = !isFavorite;
+      targetItem.isFavorite = isFavorite;
     });
     alert(isFavorite ? "좋아요" : "모르겠어요");
-  };
-
-  // 링크 버튼
-  const handleItemClick = (link) => {
-    alert("Item Click!");
-    window.open(link, "_blank");
   };
 
   // 관심 강의만 표시하기
@@ -54,7 +48,7 @@ function App() {
     <>
       <main style={{ flexDirection: "column", gap: "1rem" }}>
         <CourseForm />
-        <CourseListCard title="강의 목록" items={items} onToggleFavorite={handleToggleFavorite} onItemClick={handleItemClick} />
+        <CourseListCard title="강의 목록" items={items} onToggleFavorite={handleToggleFavorite} />
         {/* <CourseListCard title="관심 강의 목록" items={favoriteCourse} /> */}
       </main>
     </>

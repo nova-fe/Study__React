@@ -1,20 +1,39 @@
-export default function CourseItem({ item, onToggleFavorite, onItemClick }) {
+function FavoriteBtn({ onLikeClick, isFavorite }) {
   return (
-    <article className="course" onClick={() => onItemClick(item.link)}>
-      <img className="course__img" src={item.thumbnail} alt="강의이미지" />
+    <button className="btn" onClick={onLikeClick}>
+      <img className="btn__image" src={isFavorite ? "./img/heart-fill-icon.svg" : "./img/heart-icon.svg"} />
+    </button>
+  );
+}
+
+function LinkIconBtn({ link }) {
+  return (
+    <a className="btn" href={link} target="_blank" rel="noreferrer">
+      <img className="btn__image" src="./img/link-icon.svg" alt="" />
+    </a>
+  );
+}
+
+export default function CourseItem({ title, description, thumbnail, isFavorite, link, id, onToggleFavorite }) {
+  function handleFavorite() {
+    onToggleFavorite(id, !isFavorite);
+  }
+
+  function handleItemClick() {
+    alert("Item Click!");
+    window.open(link, "_blank");
+  }
+
+  return (
+    <article className="course" onClick={handleItemClick}>
+      <img className="course__img" src={thumbnail} alt="강의이미지" />
       <div className="course__body">
-        <div className="course__title">{item.title}</div>
-        <div className="course__description">{item.description}</div>
+        <div className="course__title">{title}</div>
+        <div className="course__description">{description}</div>
       </div>
       <div className="course__icons">
-        <button className="btn" onClick={() => onToggleFavorite(item.id, item.isFavorite)}>
-          <img className="btn__image" src={item.isFavorite ? "./img/heart-fill-icon.svg" : "./img/heart-icon.svg"} />
-        </button>
-        {item.link && (
-          <a className="btn" href={item.link} target="_blank" rel="noreferrer">
-            <img className="btn__image" src="./img/link-icon.svg" alt="" />
-          </a>
-        )}
+        <FavoriteBtn isFavorite={isFavorite} onLikeClick={handleFavorite} />
+        {link && <LinkIconBtn link={link} />}
       </div>
     </article>
   );

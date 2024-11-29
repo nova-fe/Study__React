@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import Card from "../Card";
 import CourseItem from "./CourseItem";
 
-export default function CourseListCard({ title, items, onToggleFavorite, onItemClick }) {
+export default function CourseListCard({ title, items, onToggleFavorite }) {
   // items: 객체를 구조분해할당으로 가져옴
 
   // items.length - 1 : 배열의 마지막 index
@@ -15,7 +15,7 @@ export default function CourseListCard({ title, items, onToggleFavorite, onItemC
          */}
         {items.map((item, index) => (
           <Fragment key={item.id}>
-            <CourseItem item={item} onToggleFavorite={onToggleFavorite} onItemClick={onItemClick} />
+            <CourseItem {...item} onToggleFavorite={onToggleFavorite}/>
             {/* 마지막 index가 아닌 경우만 hr 구분선 표시 */}
             {index !== lastIndex && <hr className="divider" />}
           </Fragment>
