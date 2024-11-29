@@ -74,6 +74,19 @@ export default function AppTodo(props) {
     setTodoText("");
   };
 
+  // 순서 바꾸기
+  const handleReverse = () => {
+    // 기존 배열을 바꾸면 안 되므로 새로운 배열을 만듦
+    // const nextTodos = [...todos];
+    // // Array.reverse() : 배열 순서 반대로 - 뮤터블
+    // nextTodos.reverse();
+    // setTodos(nextTodos);
+
+    // Array.toReversed() : 배열 순서 반대로 - 이뮤터블(기존 배열이 변경되지 않음)
+    // 해당 API를 사용하면 간단하게 할 수 있다.
+    setTodos(todos.toReversed());
+  };
+
   return (
     <div>
       <h1>할일목록</h1>
@@ -90,18 +103,24 @@ export default function AppTodo(props) {
             setInsertAt(e.target.value);
           }}
         >
-          {todos.map((item, index) => ( // () 괄호를 쓰면 return 생략(JSX 문법에서만 가능), {} 괄호를 쓰면 return 명시 필요
-            // 할일 갯수만큼 return
+          {todos.map(
+            (
+              item,
+              index // () 괄호를 쓰면 return 생략(JSX 문법에서만 가능), {} 괄호를 쓰면 return 명시 필요
+            ) => (
+              // 할일 갯수만큼 return
               <option key={item.id} value={index}>
                 {index} 번째
               </option>
-          ))}
+            )
+          )}
         </select>
         <button type="button" onClick={handleAddTodoByIndex}>
           {insertAt}번째 추가
         </button>
       </div>
       <div>Preview: {todoText}</div>
+      <button onClick={handleReverse}>Reverse</button>
       <TodoList todos={todos} onTodoDelete={handleDeleteTodo} onToggleTodo={handleToggleTodo} />
     </div>
   );
