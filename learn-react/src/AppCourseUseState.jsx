@@ -1,10 +1,10 @@
 import "./AppCourse.css";
-import { useImmer } from "use-immer";
 import CourseForm from "./components/course/CourseForm";
 import CourseListCard from "./components/course/CourseListCard";
+import { useState } from "react";
 
 function App() {
-  const [items, updateItems] = useImmer([
+  const [items, setItems] = useState([
     {
       id: 0,
       title: "입문자를 위한, HTML&CSS 웹 개발 입문",
@@ -32,10 +32,15 @@ function App() {
 
   // 좋아요 버튼
   const handleToggleFavorite = (id, isFavorite) => {
-    updateItems((draft) => {
-      const targetItem = draft.find((item) => item.id === id);
-      targetItem.isFavorite = !isFavorite;
+    const nextItems = items.map((item) => {
+      if (item.id === id) {
+        let newFavorite = isFavorite ? false : true;
+        return { ...item, isFavorite: newFavorite };
+      }
+      return item;
     });
+
+    setItems(nextItems);
     alert(isFavorite ? "좋아요" : "모르겠어요");
   };
 
