@@ -8,6 +8,7 @@ export default function AppTodo(props) {
     { id: 0, text: "HTML/CSS 공부하기", done: false },
     { id: 1, text: "자바스크립트 공부하기", done: false },
   ]);
+  const [insertAt, setInsertAt] = useState(todos.length - 1);
 
   // input 입력값 가져오기
   const handleTodoTextChange = (e) => {
@@ -55,13 +56,51 @@ export default function AppTodo(props) {
     setTodos(nextTodos);
   };
 
+  // 할 일 n번째에 추가
+  const handleAddTodoByIndex = () => {
+    // insertAt: 선택한 index 값
+    const nextId = todos.length; // 할일갯수
+    // 항목을 삽입하려면 삽입 지점 앞에 자른 배열을 전개하고
+    // 새 항목과 원본 배열의 나머지 부분을 전개하는 배열을 만듭니다.
+    const newTodos = [
+      // 삽입지점 이전 항목(처음부터 insertAt까지)
+      ...todos.slice(0, insertAt),
+      // 새 항목 추가
+      { id: nextId, text: todoText, done: false },
+      // 삽입 지점 이후 항목 (insertAt 부터 끝까지)
+      ...todos.slice(insertAt),
+    ];
+    setTodos(newTodos);
+    setTodoText("");
+  };
+
   return (
     <div>
       <h1>할일목록</h1>
-      <input type="text" value={todoText} onKeyDown={handleKeyDown} onChange={handleTodoTextChange} />
-      <button type="button" onClick={handleAddTodo}>
-        추가
-      </button>
+      <div>
+        <input type="text" value={todoText} onKeyDown={handleKeyDown} onChange={handleTodoTextChange} />
+        <button type="button" onClick={handleAddTodo}>
+          추가
+        </button>
+      </div>
+      <div>
+        <select
+          value={insertAt}
+          onChange={(e) => {
+            setInsertAt(e.target.value);
+          }}
+        >
+          {todos.map((item, index) => ( // () 괄호를 쓰면 return 생략(JSX 문법에서만 가능), {} 괄호를 쓰면 return 명시 필요
+            // 할일 갯수만큼 return
+              <option key={item.id} value={index}>
+                {index} 번째
+              </option>
+          ))}
+        </select>
+        <button type="button" onClick={handleAddTodoByIndex}>
+          {insertAt}번째 추가
+        </button>
+      </div>
       <div>Preview: {todoText}</div>
       <TodoList todos={todos} onTodoDelete={handleDeleteTodo} onToggleTodo={handleToggleTodo} />
     </div>
