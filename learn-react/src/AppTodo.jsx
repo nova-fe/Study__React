@@ -1,13 +1,14 @@
 import { useState } from "react";
 import "./App.css";
 import TodoList from "./components/todo/TodoList";
-import { useReducer } from "react";
+// import { useReducer } from "react";
+import { useImmerReducer } from "use-immer";
 import todoReducer from "./reducer/todo-reducer";
 
 export default function AppTodo(props) {
   const [todoText, setTodoText] = useState("");
   // useReducer(reducer함수, 관리할 상태의 초기값)
-  const [todos, dispatch] = useReducer(todoReducer, [
+  const [todos, dispatch] = useImmerReducer(todoReducer, [
     { id: 0, text: "HTML/CSS 공부하기", done: false },
     { id: 1, text: "자바스크립트 공부하기", done: false },
   ]);
@@ -77,7 +78,7 @@ export default function AppTodo(props) {
   const handleReverse = () => {
     dispatch({
       type: "reverse",
-    })
+    });
   };
 
   return (
