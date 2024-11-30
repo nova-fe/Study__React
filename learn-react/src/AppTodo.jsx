@@ -20,11 +20,13 @@ export default function AppTodo(props) {
   };
 
   // 엔터키로 할일 추가
-  const handleKeyDown = (e) => {
+  const handleAddTodoOnEnter = (e) => {
     // if (e.keyCode === 13) {
     //   handleAddTodo();
     // }
-    if (e.key === "Enter") {
+    // e.nativeEvent: 기본이벤트
+    // isComposing: 텍스트가 조합중인지 체크
+    if (e.key === "Enter" && e.nativeEvent.isComposing === false) {
       handleAddTodo();
     }
   };
@@ -85,7 +87,7 @@ export default function AppTodo(props) {
     <div>
       <h1>할일목록</h1>
       <div>
-        <input type="text" value={todoText} onKeyDown={handleKeyDown} onChange={handleTodoTextChange} />
+        <input type="text" value={todoText} onKeyDown={handleAddTodoOnEnter} onChange={handleTodoTextChange} />
         <button type="button" onClick={handleAddTodo}>
           추가
         </button>
