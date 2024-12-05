@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 
 // let counter = 0;
 function ButtonCounter() {
@@ -24,7 +24,7 @@ function ButtonCounter() {
   return <button onClick={handleClick}>count</button>;
 }
 
-function Form() {
+const MyForm = forwardRef((props, ref) => {
   const [form, setForm] = useState({
     title: "제목",
     author: "Nova",
@@ -54,22 +54,6 @@ function Form() {
     console.log("✅저장 성공");
   };
 
-  // 화면이 렌더링 되어있을 때 값이 없는 입력폼에 focus
-  useEffect(() => {
-    if (form.title === "") {
-      titleInputRef.current.focus();
-      return;
-    }
-    if (!form.author) {
-      contentTextareaRef.current.focus();
-      return;
-    }
-    if (!form.content) {
-      contentTextareaRef.current.focus();
-      return;
-    }
-  }, []);
-
   const handleForm = (e) => {
     const { name, value } = e.target;
     // console.log(e.target.name); // title, author, content 등 입력폼에 입력되면 해당 name을 가져옴
@@ -80,8 +64,26 @@ function Form() {
     });
   };
 
+  // 화면이 렌더링 되어있을 때 값이 없는 입력폼에 focus
+  const [isChanged, setIsChanged] = useState(false);
+  // 변경되기 전 데이터는 렌더링 항목에 포함하지 않음 = useRef
+  const prevForm = useRef(null);
+
+  useEffect(() => {
+    // 서버 API fetch => useEffect 사용!
+    prevForm.current = { ...form };
+  }, []);
+
+  useEffect(() => {
+    const hasChanged =
+      prevForm.current.title !== form.title ||
+      prevForm.current.author !== form.author ||
+      prevForm.current.content !== form.content;
+    setIsChanged(hasChanged);
+  }, [form]);
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form ref={ref} onSubmit={handleSubmit}>
       <fieldset>
         <legend>글쓰기</legend>
         <input
@@ -108,20 +110,22 @@ function Form() {
           onChange={handleForm}
         />
         <hr />
-        <button>전송</button>
+        <button disabled={!isChanged}>전송</button>
       </fieldset>
     </form>
   );
-}
+});
 
 export default function AppRef(props) {
+  const myFormRef = useRef(null);
+
   return (
     <>
       <h2>Count</h2>
       <ButtonCounter />
       <ButtonCounter />
       <h2>Form</h2>
-      <Form />
+      <MyForm ref={myFormRef} />
     </>
   );
 }
