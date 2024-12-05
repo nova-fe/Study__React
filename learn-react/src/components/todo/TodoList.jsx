@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useTodos } from "../../context/TodoContext";
 import TodoItem from "./TodoItem";
 
@@ -8,19 +8,6 @@ export default function TodoList() {
   // 1. 할 일 중 하나를 체크한 경우 => todos의 done 이 true인 것들
   // 2. 완료된 항목 보기 체크했을 때 체크한 1개만 보여야 함
   // 3. 갯수는 완료 갯수/전체 갯수 표시 => todos에서 done 이 true인 것의 갯수
-
-  // 할 일 갯수 count
-  const getStartsCount = () => {
-    const totalCount = todos.length;
-    const doneCount = todos.filter((todo) => todo.done).length;
-    return {
-      totalCount,
-      doneCount,
-    };
-  };
-
-  // 구조분해할당으로 각 return 값 가져옴
-  const { totalCount, doneCount } = getStartsCount();
 
   // 완료 상태
   const [isDone, setIsDone] = useState(false);
@@ -32,6 +19,25 @@ export default function TodoList() {
     }
     return todos.filter((todo) => todo.done);
   };
+
+  // 할 일 갯수 구하기
+  const getStatsCount = () => {
+    console.log("getStatsCount 함수 실행!");
+    const totalCount = todos.length;
+    const doneCount = todos.filter((todo) => todo.done).length;
+    return {
+      totalCount,
+      doneCount,
+    };
+  };
+
+  // 구조분해할당으로 각 return 값 가져옴
+  // const { totalCount, doneCount } = getStatsCount();
+
+  // useMemo(매개변수 없는 결과값을 반환하는 함수, 의존된 상태)
+  // todos의 값이 변할 때에만 getStatsCount() 함수 실행
+  // return 값을 구조분해할당으로 변수에 담음
+  const { totalCount, doneCount } = useMemo(() => getStatsCount(), [todos]);
 
   // 위에서 return된 값을 변수에 담음
   const filteredTodos = getFilteredTodos();
