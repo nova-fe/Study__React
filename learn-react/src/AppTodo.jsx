@@ -1,4 +1,4 @@
-import "./App.css";
+// import "./App.css";
 import TodoList from "./components/todo/TodoList";
 import AddTodo from "./components/todo/AddTodo";
 // TodoContext: todos 상태 관리 / TodoDispatchContext: dispatch 함수 관리

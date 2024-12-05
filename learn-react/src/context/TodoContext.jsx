@@ -21,10 +21,9 @@ export function TodoProvider({ children }) {
   );
 }
 
-
 export function useTodos() {
-  return useContext(TodoContext)
+  return useContext(TodoContext);
 }
 export function useTodosDispatch() {
-  return useContext(TodoDispatchContext); 
+  return useContext(TodoDispatchContext);
 }
