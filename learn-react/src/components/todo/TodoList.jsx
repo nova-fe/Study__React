@@ -5,10 +5,7 @@ import TodoItem from "./TodoItem";
 export default function TodoList() {
   const todos = useTodos();
 
-  // 1. 할 일 중 하나를 체크한 경우 => todos의 done 이 true인 것들
-  // 2. 완료된 항목 보기 체크했을 때 체크한 1개만 보여야 함
-  // 3. 갯수는 완료 갯수/전체 갯수 표시 => todos에서 done 이 true인 것의 갯수
-
+  
   // 완료 상태
   const [isDone, setIsDone] = useState(false);
 
@@ -22,7 +19,7 @@ export default function TodoList() {
 
   // 할 일 갯수 구하기
   const getStatsCount = () => {
-    console.log("getStatsCount 함수 실행!");
+    // console.log("getStatsCount 함수 실행!");
     const totalCount = todos.length;
     const doneCount = todos.filter((todo) => todo.done).length;
     return {
@@ -53,7 +50,7 @@ export default function TodoList() {
           }}
         />
         <label htmlFor="isDone">
-          완료된 항목 보기({totalCount}/{doneCount})
+          완료된 항목 보기({doneCount}/{totalCount})
         </label>
       </div>
       <ul>

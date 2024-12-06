@@ -17,6 +17,7 @@ const RegularComponent = ({ count, items = [], onCount }) => {
 };
 
 // 메모이제이션이 적용된 컴포넌트
+// https://ko.react.dev/reference/react/memo
 // prop으로 들어오는 count가 변경 될 때만 리렌더링
 // items를 useMemo를 사용하지 않으면 리렌더링이 됨 -> Obj타입이기 때문
 const MemoizedComponent = memo(({ count, items = [], onCount }) => {
