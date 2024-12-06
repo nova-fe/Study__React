@@ -52,7 +52,7 @@ function App() {
     <>
       <main style={{ flexDirection: "column", gap: "1rem" }}>
         <CourseForm />
-        <CourseListCard title="강의 목록" items={items} onToggleFavorite={handleToggleFavorite} onItemClick={handleItemClick} />
+        <CourseListCard title="강의 목록" items={items} onToggleFavorite={handleToggleFavorite} />
         {/* <CourseListCard title="관심 강의 목록" items={favoriteCourse} /> */}
       </main>
     </>

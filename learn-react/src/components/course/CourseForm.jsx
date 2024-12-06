@@ -68,20 +68,46 @@ export default function CourseForm(props) {
   return (
     <>
       <Card title="강의 등록">
-        <form style={{ display: "flex", flexDirection: "column", gap: "1rem" }} onSubmit={handleCourseForm}>
-          <input name="title" type="text" placeholder="제목" value={form.title} onChange={handleChange} />
-          <input name="description" type="text" placeholder="설명" value={form.description} onChange={handleChange} />
+        <form
+          style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+          onSubmit={handleCourseForm}
+        >
+          <input
+            name="title"
+            type="text"
+            placeholder="제목"
+            value={form.title}
+            onChange={handleChange}
+          />
+          <input
+            name="description"
+            type="text"
+            placeholder="설명"
+            value={form.description}
+            onChange={handleChange}
+          />
           <div style={{ display: "flex", alignItems: "center" }}>
             <label htmlFor="skill" style={{ width: "100px" }}>
               스킬
             </label>
-            <input name="skill" id="skill" type="text" value={form.info.skill} onChange={handleSkillChange} />
+            <input
+              name="skill"
+              id="skill"
+              type="text"
+              value={form.info.skill}
+              onChange={handleSkillChange}
+            />
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
             <label htmlFor="level" style={{ width: "100px" }}>
               난이도
             </label>
-            <select name="level" id="level" value={form.info.level} onChange={handleLevelChange}>
+            <select
+              name="level"
+              id="level"
+              value={form.info.level}
+              onChange={handleLevelChange}
+            >
               <option value="0">입문</option>
               <option value="1">초급</option>
               <option value="2">중급</option>
@@ -90,7 +116,14 @@ export default function CourseForm(props) {
           <input type="submit" value="등록" />
         </form>
         {(form.title || form.description) && ( // 둘 중 하나라도 존재한다면 true
-          <div style={{ marginTop: "16px", padding: "16px", backgroundColor: "#eee", borderRadius: "6px" }}>
+          <div
+            style={{
+              marginTop: "16px",
+              padding: "16px",
+              backgroundColor: "#eee",
+              borderRadius: "6px",
+            }}
+          >
             {form.title && <p>제목: {form.title}</p>}
             {form.description && <p>설명: {form.description}</p>}
             {form.info.skill && <p>스킬: {form.info.skill}</p>}

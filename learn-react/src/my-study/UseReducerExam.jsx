@@ -12,7 +12,8 @@ function numReducer(state, action) {
       return state + action.data;
     case "DECREASE":
       return state - action.data;
-      derault: return state;
+    default:
+      return state;
   }
 }
 

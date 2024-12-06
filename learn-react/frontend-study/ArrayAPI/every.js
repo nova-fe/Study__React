@@ -9,5 +9,5 @@ console.log(
   "모든 숫자가 6 이하인가요?",
   numbers.every((number) => {
     return number <= 6;
-  })
+  }),
 );

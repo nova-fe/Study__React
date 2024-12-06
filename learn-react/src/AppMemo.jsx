@@ -73,10 +73,20 @@ export default function AppMemo() {
     <div>
       <h2>컴포넌트 메모이제이션</h2>
       <button onClick={() => setCount(count + 1)}>카운트 증가</button>
-      <button onClick={() => setOtherState(otherState + 1)}>기타 상태 변경</button>
+      <button onClick={() => setOtherState(otherState + 1)}>
+        기타 상태 변경
+      </button>
       <hr />
-      <RegularComponent count={count} items={begginerCourses} onCount={handleCount} />
-      <MemoizedComponent count={count} items={begginerCourses} onCount={handleCount} />
+      <RegularComponent
+        count={count}
+        items={begginerCourses}
+        onCount={handleCount}
+      />
+      <MemoizedComponent
+        count={count}
+        items={begginerCourses}
+        onCount={handleCount}
+      />
     </div>
   );
 }

@@ -34,7 +34,9 @@ export default memo(function TodoItem({ item }) {
           handleToggleTodo(item.id, e.target.checked);
         }}
       />
-      <span style={item.done ? { textDecoration: "line-through" } : {}}>{item.text}</span>
+      <span style={item.done ? { textDecoration: "line-through" } : {}}>
+        {item.text}
+      </span>
       <button onClick={() => handleDeleteTodo(item.id)}>X</button>
     </label>
   );

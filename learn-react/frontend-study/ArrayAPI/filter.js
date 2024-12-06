@@ -9,12 +9,12 @@ console.log(
   "짝수만 배열로 반환",
   numbers.filter((number) => {
     return number % 2 === 0;
-  })
+  }),
 );
 
 console.log(
   "홀수만 배열로 반환",
   numbers.filter((number) => {
     return number % 2 === 1;
-  })
+  }),
 );

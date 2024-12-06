@@ -9,19 +9,19 @@ console.log(
   "과일 중에 배가 있나요?",
   fruits.some((fruit) => {
     return fruit === "배";
-  })
+  }),
 );
 
 console.log(
   "숫자 중에 7 이상인 숫자가 있나요?",
   numbers.some((number) => {
     return number >= 7;
-  })
+  }),
 );
 
 console.log(
   "국어 점수가 100점인 학생이 있나요?",
   students.some((student) => {
     return student.koreanLanguage === 100;
-  })
+  }),
 );

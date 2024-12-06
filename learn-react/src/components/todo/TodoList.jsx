@@ -5,7 +5,6 @@ import TodoItem from "./TodoItem";
 export default function TodoList() {
   const todos = useTodos();
 
-  
   // 완료 상태
   const [isDone, setIsDone] = useState(false);
 

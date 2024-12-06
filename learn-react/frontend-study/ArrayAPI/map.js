@@ -16,5 +16,5 @@ console.log(
   "영어 점수",
   students.map((student) => {
     return student.english;
-  })
+  }),
 );

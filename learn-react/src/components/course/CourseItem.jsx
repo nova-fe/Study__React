@@ -1,7 +1,10 @@
 function FavoriteBtn({ onLikeClick, isFavorite }) {
   return (
     <button className="btn" onClick={onLikeClick}>
-      <img className="btn__image" src={isFavorite ? "./img/heart-fill-icon.svg" : "./img/heart-icon.svg"} />
+      <img
+        className="btn__image"
+        src={isFavorite ? "./img/heart-fill-icon.svg" : "./img/heart-icon.svg"}
+      />
     </button>
   );
 }
@@ -14,7 +17,15 @@ function LinkIconBtn({ link }) {
   );
 }
 
-export default function CourseItem({ title, description, thumbnail, isFavorite, link, id, onToggleFavorite }) {
+export default function CourseItem({
+  title,
+  description,
+  thumbnail,
+  isFavorite,
+  link,
+  id,
+  onToggleFavorite,
+}) {
   function handleFavorite() {
     onToggleFavorite(id, !isFavorite);
   }

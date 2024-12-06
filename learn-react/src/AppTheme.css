@@ -24,7 +24,9 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  transition: background-color 0.3s, color 0.3s;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
   border-bottom: 2px solid #eee;
   min-height: 64px;
 }
@@ -33,7 +35,9 @@
   padding: 5px 10px;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
 }
 
 .header--light .header__button {
@@ -76,7 +80,9 @@ main {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  transition: background-color 0.3s, color 0.3s;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
   min-height: 120px;
   border-top: 2px solid #eee;
 }
@@ -85,7 +91,9 @@ main {
   padding: 5px 10px;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
 }
 
 .footer--light .footer__button {

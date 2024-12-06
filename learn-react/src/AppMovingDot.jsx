@@ -15,10 +15,9 @@ export default function AppMovingDot() {
           // * 객체를 업데이트 하고 싶을 때는 기존 객체의 복사본을 만들어서 적용
           // 기존값을 절대 변경해선 안됨, 새로운 객체를 만들어서 setter에 넣어야 함
           {
-            
             x: e.clientX,
             y: e.clientY,
-          }
+          },
         );
       }}
       style={{

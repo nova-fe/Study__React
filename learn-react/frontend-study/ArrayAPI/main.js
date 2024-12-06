@@ -34,5 +34,5 @@ const resultFruits = fruits.reduce((acc, cur) => {
   }
   return acc;
 }, []);
-console.log(resultFruits); // (5) ['사과', '딸기', '배', '참외', '수박']
+console.log(resultFruits); // (5)['사과', '딸기', '배', '참외', '수박']
 // * 중복값이었던 딸기를 뺀 배열이 반환된다!

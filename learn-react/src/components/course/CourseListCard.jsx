@@ -15,7 +15,7 @@ export default function CourseListCard({ title, items, onToggleFavorite }) {
          */}
         {items.map((item, index) => (
           <Fragment key={item.id}>
-            <CourseItem {...item} onToggleFavorite={onToggleFavorite}/>
+            <CourseItem {...item} onToggleFavorite={onToggleFavorite} />
             {/* 마지막 index가 아닌 경우만 hr 구분선 표시 */}
             {index !== lastIndex && <hr className="divider" />}
           </Fragment>

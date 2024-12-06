@@ -16,7 +16,9 @@ export function TodoProvider({ children }) {
   return (
     <TodoContext.Provider value={todos}>
       {/* dispatch '함수'를 넘김 = dispatch를 모든 하위 컴포넌트에서 사용할 수 있음 */}
-      <TodoDispatchContext.Provider value={dispatch}>{children}</TodoDispatchContext.Provider>
+      <TodoDispatchContext.Provider value={dispatch}>
+        {children}
+      </TodoDispatchContext.Provider>
     </TodoContext.Provider>
   );
 }
