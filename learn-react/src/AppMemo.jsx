@@ -1,6 +1,6 @@
-import { useState, memo, useMemo } from "react";
+import { useState, memo, useMemo, useCallback } from "react";
 // 메모이제이션이 적용되지 않은 컴포넌트
-const RegularComponent = ({ count, items = [] }) => {
+const RegularComponent = ({ count, items = [], onCount }) => {
   console.log("RegularComponent 렌더링");
   return (
     <fieldset>
@@ -11,6 +11,7 @@ const RegularComponent = ({ count, items = [] }) => {
           <li key={item.id}>{item.text}</li>
         ))}
       </ul>
+      <button onClick={onCount}>카운트 증가</button>
     </fieldset>
   );
 };
@@ -18,7 +19,7 @@ const RegularComponent = ({ count, items = [] }) => {
 // 메모이제이션이 적용된 컴포넌트
 // prop으로 들어오는 count가 변경 될 때만 리렌더링
 // items를 useMemo를 사용하지 않으면 리렌더링이 됨 -> Obj타입이기 때문
-const MemoizedComponent = memo(({ count, items = [] }) => {
+const MemoizedComponent = memo(({ count, items = [], onCount }) => {
   console.log("MemoizedComponent 렌더링");
   return (
     <fieldset>
@@ -29,6 +30,7 @@ const MemoizedComponent = memo(({ count, items = [] }) => {
           <li key={item.id}>{item.text}</li>
         ))}
       </ul>
+      <button onClick={onCount}>카운트 증가</button>
     </fieldset>
   );
 });
@@ -53,6 +55,10 @@ export default function AppMemo() {
     return courses.filter((item) => item.level === 0);
   }, [courses]);
 
+  const handleCount = useCallback(() => {
+    setCount(count + 1);
+  }, [count]);
+
   // const courses = useMemo(() => {
   //   return [
   //     { id: 0, text: "HTML&CSS", level: 0 },
@@ -68,8 +74,8 @@ export default function AppMemo() {
       <button onClick={() => setCount(count + 1)}>카운트 증가</button>
       <button onClick={() => setOtherState(otherState + 1)}>기타 상태 변경</button>
       <hr />
-      <RegularComponent count={count} items={begginerCourses} />
-      <MemoizedComponent count={count} items={begginerCourses} />
+      <RegularComponent count={count} items={begginerCourses} onCount={handleCount} />
+      <MemoizedComponent count={count} items={begginerCourses} onCount={handleCount} />
     </div>
   );
 }
