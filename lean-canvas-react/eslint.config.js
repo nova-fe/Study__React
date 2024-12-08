@@ -35,6 +35,7 @@ export default [
         { allowConstantExport: true },
       ],
       'react/self-closing-comp': 'warn',
+      'react/prop-types': 'off',
     },
   },
   eslintConfigPrettier, // Prettier 설정을 마지막에 추가하여 스타일 충돌 방지
