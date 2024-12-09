@@ -1,15 +1,14 @@
-import './App.css';
-import Card1 from './components/CssModules/Card1';
-import Card2 from './components/CssModules/Card2';
+import { Outlet } from 'react-router-dom';
 
-function App() {
+export default function App() {
   return (
     <>
-      <Card1 />
-      <hr />
-      <Card2 />
+      <ul>
+        <li>Home</li>
+        <li>About</li>
+        <li>Contact</li>
+      </ul>
+      <Outlet />
     </>
   );
 }
-
-export default App;
