@@ -1,11 +1,12 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'; // https://reactrouter.com/6.28.0/start/tutorial
 import './index.css';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import App from './App';
+import ErrorPage from './pages/ErrorPage';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
         element: <Contact />,
       },
     ],
+    errorElement: <ErrorPage />,
   },
 ]);
 
