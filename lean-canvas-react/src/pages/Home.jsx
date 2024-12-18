@@ -6,8 +6,7 @@ import ViewToggle from '../components/ViewToggle';
 function Home() {
   const [isGrid, setIsGrid] = useState(true);
   const [searchText, setSearchText] = useState('');
-
-  const list = [
+  const [dummyData, setDummyData] = useState([
     {
       id: 1,
       title: '친환경 도시 농업 플랫폼',
@@ -32,11 +31,15 @@ function Home() {
       lastModified: '최근 수정일: 2023-06-01',
       tag: '여행',
     },
-  ];
+  ]);
+
+  const handleDeleteItem = id => {
+    setDummyData(dummyData.filter(item => item.id !== id));
+  };
 
   // * 직접 해보기
   // toLowerCase 하는 이유: 대소문자 구분 없이 검색하기 위해서
-  const filteredData = list.filter(item =>
+  const filteredData = dummyData.filter(item =>
     item.title.toLowerCase().includes(searchText.toLowerCase()),
   );
 
@@ -51,6 +54,7 @@ function Home() {
         filteredData={filteredData}
         isGrid={isGrid}
         searchText={searchText}
+        onDeleteItem={handleDeleteItem}
       />
     </div>
   );

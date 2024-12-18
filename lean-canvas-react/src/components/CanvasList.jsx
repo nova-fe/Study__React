@@ -1,6 +1,11 @@
 import CanvasItem from './CanvasItem';
 
-export default function CanvasList({ filteredData, searchText, isGrid }) {
+export default function CanvasList({
+  filteredData,
+  searchText,
+  isGrid,
+  onDeleteItem,
+}) {
   if (filteredData.length === 0) {
     return (
       <div className="text-center py-10">
@@ -24,6 +29,10 @@ export default function CanvasList({ filteredData, searchText, isGrid }) {
           title={item.title}
           lastModified={item.lastModified}
           tag={item.tag}
+          onDelete={e => {
+            e.preventDefault();
+            onDeleteItem(item.id);
+          }}
         />
       ))}
     </div>
