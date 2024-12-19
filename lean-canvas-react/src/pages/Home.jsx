@@ -10,14 +10,14 @@ function Home() {
   const [data, setData] = useState([]);
 
   // async 함수의 리턴값은 무조건 'Promise'
-  async function fetchData() {
+  async function fetchData(params) {
     // await 은 async 함수 안에서만 동작
     // const data = await fetch('http://localhost:8000/canvases')
     //   .then(res => res.json())
     //   .catch(console.error);
     // setData(data);
 
-    const response = await getCanvases();
+    const response = await getCanvases(params);
     setData(response.data);
   }
 
@@ -25,8 +25,8 @@ function Home() {
   useEffect(() => {
     // async await *함수*를 만들어서 호출해야함
     // => useEffect 에서는 콜백함수가 *동기*적으로 실행되기를 기대함
-    fetchData();
-  }, []);
+    fetchData({ title_like: searchText });
+  }, [searchText]);
 
   const handleDeleteItem = id => {
     setData(data.filter(item => item.id !== id));
@@ -34,9 +34,9 @@ function Home() {
 
   // * 직접 해보기
   // toLowerCase 하는 이유: 대소문자 구분 없이 검색하기 위해서
-  const filteredData = data.filter(item =>
-    item.title.toLowerCase().includes(searchText.toLowerCase()),
-  );
+  // const filteredData = data.filter(item =>
+  //   item.title.toLowerCase().includes(searchText.toLowerCase()),
+  // );
 
   return (
     <div className="container mx-auto px-4 py-16">
@@ -46,7 +46,7 @@ function Home() {
       </div>
 
       <CanvasList
-        filteredData={filteredData}
+        filteredData={data}
         isGrid={isGrid}
         searchText={searchText}
         onDeleteItem={handleDeleteItem}
