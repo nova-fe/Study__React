@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import CanvasList from '../components/CanvasList';
 import SearchBar from '../components/SearchBar';
 import ViewToggle from '../components/ViewToggle';
+import { getCanvases } from '../api/canvas';
 
 function Home() {
   const [isGrid, setIsGrid] = useState(true);
@@ -11,10 +12,13 @@ function Home() {
   // async 함수의 리턴값은 무조건 'Promise'
   async function fetchData() {
     // await 은 async 함수 안에서만 동작
-    const data = await fetch('http://localhost:8000/canvases')
-      .then(res => res.json())
-      .catch(console.error);
-    setData(data);
+    // const data = await fetch('http://localhost:8000/canvases')
+    //   .then(res => res.json())
+    //   .catch(console.error);
+    // setData(data);
+
+    const response = await getCanvases();
+    setData(response.data);
   }
 
   // useEffect: 마운트 된 이후 1번만 호출
