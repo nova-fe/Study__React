@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CanvasList from '../components/CanvasList';
 import SearchBar from '../components/SearchBar';
 import ViewToggle from '../components/ViewToggle';
@@ -6,40 +6,31 @@ import ViewToggle from '../components/ViewToggle';
 function Home() {
   const [isGrid, setIsGrid] = useState(true);
   const [searchText, setSearchText] = useState('');
-  const [dummyData, setDummyData] = useState([
-    {
-      id: 1,
-      title: '친환경 도시 농업 플랫폼',
-      lastModified: '최근 수정일: 2023-06-15',
-      tag: '농업',
-    },
-    {
-      id: 2,
-      title: 'AI 기반 건강 관리 앱',
-      lastModified: '최근 수정일: 2023-06-10',
-      tag: '헬스케어',
-    },
-    {
-      id: 3,
-      title: '온디맨드 물류 서비스',
-      lastModified: '최근 수정일: 2023-06-05',
-      tag: '물류',
-    },
-    {
-      id: 4,
-      title: 'VR 가상 여행 서비스',
-      lastModified: '최근 수정일: 2023-06-01',
-      tag: '여행',
-    },
-  ]);
+  const [data, setData] = useState([]);
+
+  // async 함수의 리턴값은 무조건 'Promise'
+  async function fetchData() {
+    // await 은 async 함수 안에서만 동작
+    const data = await fetch('http://localhost:8000/canvases')
+      .then(res => res.json())
+      .catch(console.error);
+    setData(data);
+  }
+
+  // useEffect: 마운트 된 이후 1번만 호출
+  useEffect(() => {
+    // async await *함수*를 만들어서 호출해야함
+    // => useEffect 에서는 콜백함수가 *동기*적으로 실행되기를 기대함
+    fetchData();
+  }, []);
 
   const handleDeleteItem = id => {
-    setDummyData(dummyData.filter(item => item.id !== id));
+    setData(data.filter(item => item.id !== id));
   };
 
   // * 직접 해보기
   // toLowerCase 하는 이유: 대소문자 구분 없이 검색하기 위해서
-  const filteredData = dummyData.filter(item =>
+  const filteredData = data.filter(item =>
     item.title.toLowerCase().includes(searchText.toLowerCase()),
   );
 
