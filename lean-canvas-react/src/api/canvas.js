@@ -14,7 +14,7 @@ export function getCanvases(params) {
   return canvases.get('/', { params: payload });
 }
 
-// 저장, 수정, 삭제
+// 저장, 수정
 export function createCanvases() {
   const newCanvas = {
     title: uuidv4().substring(0, 4) + '_새로운 린 캔버스',
@@ -22,4 +22,9 @@ export function createCanvases() {
     tag: '신규',
   };
   return canvases.post('/', newCanvas);
+}
+
+// 삭제
+export async function deletCanvases(id) {
+  await canvases.delete(`/${id}`);
 }

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import CanvasList from '../components/CanvasList';
 import SearchBar from '../components/SearchBar';
 import ViewToggle from '../components/ViewToggle';
-import { createCanvases, getCanvases } from '../api/canvas';
+import { createCanvases, deletCanvases, getCanvases } from '../api/canvas';
 import Loading from '../components/Loading';
 import Error from '../components/Error';
 import Button from '../components/Button';
@@ -44,8 +44,18 @@ function Home() {
     fetchData({ title_like: searchText });
   }, [searchText]);
 
-  const handleDeleteItem = id => {
-    setData(data.filter(item => item.id !== id));
+  const handleDeleteItem = async id => {
+    if (confirm('삭제 하시겠습니까?') === false) {
+      return;
+    }
+
+    // delete logic
+    try {
+      await deletCanvases(id);
+      fetchData({ title_like: searchText });
+    } catch (err) {
+      alert(err.message);
+    }
   };
 
   // * 직접 해보기
