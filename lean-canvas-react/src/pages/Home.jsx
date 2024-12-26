@@ -19,7 +19,7 @@ function Home() {
     try {
       setIsLoading(true);
       setError(null);
-      await new Promise(resolver => setTimeout(resolver, 2000));
+      await new Promise(resolver => setTimeout(resolver, 1000));
 
       const response = await getCanvases(params);
       setData(response.data);
@@ -59,6 +59,7 @@ function Home() {
   const handleCreateCanvas = async () => {
     try {
       setIsLoadingCreate(true);
+      await new Promise(resolver => setTimeout(resolver, 1000));
       await createCanvases();
       fetchData({ title_like: searchText });
     } catch (error) {
