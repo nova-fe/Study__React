@@ -1,7 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
 import { AiOutlineClose, AiOutlineCheck } from 'react-icons/ai';
 
-export default function Note({ id, onDeleteNote }) {
+export default function Note({
+  id,
+  content,
+  onDeleteNote,
+  color: initalColor,
+}) {
   const colorOptions = [
     'bg-yellow-300',
     'bg-pink-300',
@@ -9,12 +14,15 @@ export default function Note({ id, onDeleteNote }) {
     'bg-green-300',
   ];
 
-  const randomIndex = Math.floor(Math.random() * colorOptions.length);
-  const [color, setColor] = useState(colorOptions[randomIndex]);
+  const [color, setColor] = useState(() => {
+    if (initalColor) return initalColor;
+
+    const randomIndex = Math.floor(Math.random() * colorOptions.length);
+    return colorOptions[randomIndex];
+  });
 
   const [isEditing, setIsEditing] = useState(false);
   const textareaRef = useRef(null);
-  const [content, setContent] = useState('');
 
   // 메모 높이 조절
   useEffect(() => {
@@ -59,7 +67,6 @@ export default function Note({ id, onDeleteNote }) {
         placeholder="메모를 작성하세요."
         style={{ height: 'auto', minHeight: '8rem' }}
         readOnly={!isEditing}
-        onChange={e => setContent(e.target.value)}
       />
 
       {isEditing && (

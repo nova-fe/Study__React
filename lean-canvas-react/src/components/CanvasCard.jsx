@@ -1,18 +1,9 @@
 import { FaPlus } from 'react-icons/fa';
 import Note from './Note';
-import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid'; // 고유키 생성
+export default function CanvasCard({ title, isSubtitle = false, notes = [] }) {
+  const handleAddNote = () => {};
 
-export default function CanvasCard({ title, isSubtitle = false }) {
-  const [notes, setNotes] = useState([]);
-
-  const handleAddNote = () => {
-    setNotes([...notes, { id: uuidv4(), content: '' }]);
-  };
-
-  const handleDeleteNote = id => {
-    setNotes(notes.filter(item => item.id !== id));
-  };
+  const handleDeleteNote = id => {};
 
   return (
     <div className="row-span-1 bg-white min-h-48 border border-collapse border-gray-300">
@@ -37,6 +28,7 @@ export default function CanvasCard({ title, isSubtitle = false }) {
             key={note.id}
             id={note.id}
             content={note.content}
+            color={note.color}
             onDeleteNote={handleDeleteNote}
           />
         ))}
