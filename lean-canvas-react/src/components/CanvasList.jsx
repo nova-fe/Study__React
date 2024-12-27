@@ -28,7 +28,7 @@ export default function CanvasList({
           id={item.id}
           title={item.title}
           lastModified={item.lastModified}
-          tag={item.tag}
+          category={item.category}
           onDelete={e => {
             e.preventDefault();
             onDeleteItem(item.id);

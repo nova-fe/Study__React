@@ -1,7 +1,13 @@
 import { Link } from 'react-router-dom';
 import { FaTrash } from 'react-icons/fa';
 
-export default function CanvasItem({ id, title, lastModified, tag, onDelete }) {
+export default function CanvasItem({
+  id,
+  title,
+  lastModified,
+  category,
+  onDelete,
+}) {
   return (
     <Link
       className="relative bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105"
@@ -13,7 +19,7 @@ export default function CanvasItem({ id, title, lastModified, tag, onDelete }) {
           최근 수정일 : {lastModified}
         </p>
         <span className="inline-block px-3 py-1 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full">
-          {tag}
+          {category}
         </span>
       </div>
 

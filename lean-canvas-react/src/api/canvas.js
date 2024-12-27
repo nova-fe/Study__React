@@ -19,7 +19,7 @@ export function createCanvases() {
   const newCanvas = {
     title: uuidv4().substring(0, 4) + '_새로운 린 캔버스',
     lastModified: dayjs().format('YYYY-MM-DD HH:mm:ss'),
-    tag: '신규',
+    category: '신규',
   };
   return canvases.post('/', newCanvas);
 }
