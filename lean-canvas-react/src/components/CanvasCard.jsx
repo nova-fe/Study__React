@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { FaPlus } from 'react-icons/fa';
 import Note from './Note';
 export default function CanvasCard({
@@ -6,10 +7,20 @@ export default function CanvasCard({
   notes = [],
   onNotesChange,
 }) {
-  const handleAddNote = () => {};
+  // Note 추가
+  const handleAddNote = () => {
+    const newNote = {
+      id: uuidv4(),
+      content: '',
+      color: '',
+    };
+    onNotesChange([...notes, newNote]);
+  };
 
+  // Note 삭제
   const handleRemoveNote = id => {
-    console.log(id);
+    // 인자로 들어온 id가 아닌 것들만 filter 해서 onNotesChange에 전달
+    onNotesChange(notes.filter(note => note.id !== id));
   };
 
   const handleUpdateNote = (id, content, color) => {
