@@ -8,6 +8,8 @@ export default function Note({
   onUpdateNote,
   onRemoveNote,
 }) {
+  const [localContent, setLocalContent] = useState(content);
+
   const colorOptions = [
     'bg-yellow-300',
     'bg-pink-300',
@@ -35,8 +37,8 @@ export default function Note({
   }, [content]);
 
   // 내용 수정
-  const handleContentChange = e => {
-    onUpdateNote(id, e.target.value, color);
+  const handleContentChange = () => {
+    onUpdateNote(id, localContent, color);
   };
 
   // 색상 수정
@@ -74,8 +76,10 @@ export default function Note({
       </div>
       <textarea
         ref={textareaRef}
-        value={content}
-        onChange={handleContentChange}
+        value={localContent}
+        onChange={e => setLocalContent(e.target.value)}
+        // onBlur: 요소에서 포커스가 사라졌을 때 호출
+        onBlur={handleContentChange}
         className={`w-full h-full bg-transparent resize-none border-none focus:outline-none text-gray-900 overflow-hidden`}
         aria-label="Edit Note"
         placeholder="메모를 작성하세요."
