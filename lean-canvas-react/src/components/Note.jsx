@@ -4,8 +4,9 @@ import { AiOutlineClose, AiOutlineCheck } from 'react-icons/ai';
 export default function Note({
   id,
   content,
-  onDeleteNote,
   color: initalColor,
+  onUpdateNote,
+  onRemoveNote,
 }) {
   const colorOptions = [
     'bg-yellow-300',
@@ -27,10 +28,22 @@ export default function Note({
   // 메모 높이 조절
   useEffect(() => {
     if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
       textareaRef.current.style.height =
         textareaRef.current.scrollHeight + 'px';
     }
-  });
+  }, [content]);
+
+  // 내용 수정
+  const handleContentChange = e => {
+    onUpdateNote(id, e.target.value, color);
+  };
+
+  // 색상 수정
+  const handleColorChange = newColor => {
+    setColor(newColor);
+    onUpdateNote(id, content, newColor);
+  };
 
   return (
     <div
@@ -53,7 +66,7 @@ export default function Note({
           <button
             aria-label="Close Note"
             className="text-gray-700"
-            onClick={() => onDeleteNote(id)}
+            onClick={() => onRemoveNote(id)}
           >
             <AiOutlineClose size={20} />
           </button>
@@ -62,6 +75,7 @@ export default function Note({
       <textarea
         ref={textareaRef}
         value={content}
+        onChange={handleContentChange}
         className={`w-full h-full bg-transparent resize-none border-none focus:outline-none text-gray-900 overflow-hidden`}
         aria-label="Edit Note"
         placeholder="메모를 작성하세요."
@@ -76,7 +90,7 @@ export default function Note({
               key={index}
               className={`w-6 h-6 rounded-full cursor-pointer outline outline-gray-50 ${option}`}
               aria-label={`Change color to ${option}`}
-              onClick={() => setColor(option)}
+              onClick={() => handleColorChange(option)}
             />
           ))}
         </div>

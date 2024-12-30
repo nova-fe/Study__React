@@ -1,10 +1,29 @@
 import CanvasCard from './CanvasCard';
 
-export default function LeanCanvas({ canvas }) {
+export default function LeanCanvas({ canvas, onCanvasChange }) {
+  const handleNotesChange = (section, updatedNotes) => {
+    const updatedCanvas = {
+      ...canvas,
+      // 수정된 섹션에 대한 데이터만 변경
+      [section]: {
+        // 수정된 섹션의 기본 데이터도 전개구문으로 전달
+        ...canvas[section],
+        // 수정된 노트
+        notes: updatedNotes,
+      },
+    };
+
+    onCanvasChange(updatedCanvas);
+  };
+
   return (
     <div className="border-4 border-black">
       <div className="grid grid-cols-5">
-        <CanvasCard title={'1. 문제'} notes={canvas.problem.notes} />
+        <CanvasCard
+          title={'1. 문제'}
+          notes={canvas.problem.notes}
+          onNotesChange={notes => handleNotesChange('problem', notes)}
+        />
         <CanvasCard title={'4. 해결안'} notes={canvas.solution.notes} />
         <CanvasCard
           title={'3. 가치제안'}
